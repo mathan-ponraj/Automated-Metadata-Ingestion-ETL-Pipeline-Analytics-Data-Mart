@@ -1,39 +1,59 @@
-# YouTube Trending Videos Analytics
+# 📊 TrendTube — YouTube Trending Data ETL Pipeline
 
-## Project Overview
-This project is an automated ETL (Extract, Transform, Load) system designed to migrate data from the YouTube Data API into a structured SQL environment. I built this to solve the challenge of handling large-scale, nested JSON responses and converting them into high-quality, query-ready data for business analysis.
+## 🎯 Project Overview
 
-## The Problem
-Raw data from modern APIs is often deeply nested and messy. To make YouTube trending data actually useful for a business, it needs to be extracted reliably, parsed from complex JSON structures, cleaned for consistency, and stored in a relational database. Manual exports are too slow; an automated pipeline is the only scalable solution.
+**TrendTube** is an automated **Python ETL pipeline** that extracts YouTube trending video data through the **YouTube Data API v3**, transforms nested JSON into structured datasets, and loads the processed data into a **SQL database** for analysis.
 
-## My Technical Workflow
+It transforms raw API responses into clean, structured, and **query-ready data** for business analytics.
 
-1. Automated Extraction: I integrated the YouTube Data API v3 to programmatically fetch metadata, including engagement metrics (views, likes, comments) and content categories.
-2. JSON Transformation: Since API responses are nested, I developed a parsing logic in Python to flatten the JSON objects into a tabular format, ensuring no data loss during the conversion.
-3. Data Cleaning: I implemented a transformation layer to handle missing values, standardize date-time formats, and remove duplicate entries.
-4. Database Loading: Using SQLAlchemy, I built the "Load" portion of the pipeline to migrate the processed data into a SQL database. This allows for fast, relational queries that aren't possible with raw JSON.
+## 📸 Visual Preview
 
-## System Architecture
-**API Extraction** (JSON) ➔ **Python Processing** (Pandas) ➔ **Data Transformation** ➔ **SQL Storage** (SQLAlchemy)
+![TrendTube Preview](images/pipeline-preview.png)
 
-## Key Features
-- Dynamic API Handling: Manages API requests and handles data points like Video Title, Channel, and Category.
-- Structured Storage: Replaces unstructured files with a robust SQL schema.
-- Scalability: The Python-based logic is designed to be easily scheduled for daily or hourly data syncs.
+## 💡 The Problem & Core Value
 
-## Tools and Technologies
-- Language: Python
-- Data Libraries: Pandas, JSON, NumPy
-- Database & ORM: SQL, SQLAlchemy
-- External Integration: YouTube Data API v3 (Google Cloud Console)
+- 🔗 Raw YouTube API responses contain **complex nested JSON**.
+- 🧹 Manual processing makes the data difficult to clean and analyze.
+- ⚙️ TrendTube automates **extraction, transformation, cleaning, and loading**.
+- 🗄️ Converts unstructured API data into a **relational SQL format** for efficient querying.
 
-## Future Goals
-To evolve this into a production-grade data platform, I plan to:
-- Containerize the pipeline using Docker for easier deployment.
-- Schedule the script using Apache Airflow or GitHub Actions for fully hands-off automation.
-- Build a monitoring layer to alert me if the API fails or data formats change.
+## ✨ Key Features & Data Flow
 
----
-Developed by Mathan Ponraj
-CSE Graduate | Data & Systems Engineering
-[LinkedIn Profile](https://www.linkedin.com)
+- 🔄 **Automated API Extraction** — Fetches video metadata, engagement metrics, channels, and categories.
+- 🧹 **Data Transformation** — Flattens nested JSON and standardizes the dataset.
+- 🗄️ **SQL Data Loading** — Stores processed data using SQLAlchemy.
+
+**Data Flow:**
+
+`YouTube API → JSON → Python/Pandas → Data Cleaning → SQLAlchemy → SQL Database`
+
+## 🛠️ Tech Stack & Architecture Decisions
+
+| Layer | Technology | Purpose |
+|---|---|---|
+| Language | **Python** | ETL development |
+| Data Processing | **Pandas, NumPy** | Cleaning & transformation |
+| JSON Processing | **JSON** | API response parsing |
+| Database | **SQL** | Structured data storage |
+| ORM | **SQLAlchemy** | Database interaction |
+| API | **YouTube Data API v3** | Data extraction |
+
+## 📈 Challenges & Technical Takeaways
+
+**The Obstacle**
+- YouTube API responses contain **deeply nested JSON structures**.
+- Raw data includes missing values, duplicates, and inconsistent timestamps.
+
+**The Resolution**
+- Built Python logic to **flatten nested JSON** into tabular data.
+- Added data cleaning and standardization steps.
+- Used **SQLAlchemy** to load processed data into a structured SQL environment.
+
+## ⚙️ Quick Start
+
+```bash
+git clone <your-repository-url>
+cd TrendTube
+pip install -r requirements.txt
+python main.py
+```
