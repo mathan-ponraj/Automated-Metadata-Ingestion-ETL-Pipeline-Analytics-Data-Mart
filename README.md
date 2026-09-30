@@ -1,53 +1,58 @@
-# 📊 TrendTube — YouTube Trending Data ETL Pipeline
+# TrendTube — YouTube Trending Data ETL Pipeline
 
-## 🎯 Project Overview
+## Description
 
-**TrendTube** is an automated **Python ETL pipeline** that extracts YouTube trending video data through the **YouTube Data API v3**, transforms nested JSON into structured datasets, and loads the processed data into a **SQL database** for analysis.
+TrendTube is an automated ETL pipeline that collects trending YouTube video data using the YouTube Data API v3. The project includes data extraction, data cleaning and transformation, loading the processed data into a SQLite database, and SQL-based analysis of video performance and engagement.
 
-It transforms raw API responses into clean, structured, and **query-ready data** for business analytics.
+The analysis focuses on identifying the most-viewed videos, most-liked videos, frequently appearing channels, and videos with higher like-to-view engagement.
 
-## 📸 Visual Preview
+## Skills
 
-![TrendTube Preview](images/pipeline-preview.png)
+- API data extraction
+- Data cleaning and preprocessing
+- ETL pipeline development
+- Data transformation
+- SQL data analysis
+- Database management
+- Engagement metric analysis
 
-## 💡 The Problem & Core Value
+## Technology
 
-- 🔗 Raw YouTube API responses contain **complex nested JSON**.
-- 🧹 Manual processing makes the data difficult to clean and analyze.
-- ⚙️ TrendTube automates **extraction, transformation, cleaning, and loading**.
-- 🗄️ Converts unstructured API data into a **relational SQL format** for efficient querying.
+Python, Pandas, YouTube Data API v3, SQLite, SQL
 
-## ✨ Key Features & Data Flow
+## Workflow
 
-- 🔄 **Automated API Extraction** — Fetches video metadata, engagement metrics, channels, and categories.
-- 🧹 **Data Transformation** — Flattens nested JSON and standardizes the dataset.
-- 🗄️ **SQL Data Loading** — Stores processed data using SQLAlchemy.
+The project includes the following steps:
 
-**Data Flow:**
+1. **Data Extraction** — Fetch trending video data from the YouTube Data API and save the raw data as a CSV file.
+2. **Data Cleaning** — Handle missing values, convert views and likes into numeric values, and remove duplicate records.
+3. **Data Transformation** — Prepare the cleaned data into a structured format for database storage and analysis.
+4. **Data Loading** — Load the transformed dataset into a SQLite database.
+5. **SQL Analysis** — Query the database to analyze video views, likes, channel frequency, and engagement.
+6. **Output Generation** — Save the analysis results as separate CSV files for further analysis.
 
-`YouTube API → JSON → Python/Pandas → Data Cleaning → SQLAlchemy → SQL Database`
+## Obstacles & Resolutions
 
-## 🛠️ Tech Stack & Architecture Decisions
+- **Raw API data required cleaning before analysis:** Handled missing values, converted numeric fields, and removed duplicate records using Pandas.
+- **Different data types made analysis difficult:** Standardized views and likes into numeric values before performing calculations.
+- **Raw CSV data was not convenient for repeated analysis:** Loaded the transformed dataset into SQLite so it could be queried using SQL.
+- **Views and likes alone did not provide an engagement comparison:** Created a like-to-view engagement rate to compare audience interaction across videos.
+- **Analysis results were difficult to reuse from SQL queries:** Exported key query results into separate CSV files for further analysis and reporting.
 
-| Layer | Technology | Purpose |
-|---|---|---|
-| Language | **Python** | ETL development |
-| Data Processing | **Pandas, NumPy** | Cleaning & transformation |
-| JSON Processing | **JSON** | API response parsing |
-| Database | **SQL** | Structured data storage |
-| ORM | **SQLAlchemy** | Database interaction |
-| API | **YouTube Data API v3** | Data extraction |
+## Results
 
-## 📈 Challenges & Technical Takeaways
+The pipeline successfully converts raw YouTube API data into a structured SQLite dataset and generates analytical outputs for the top 10 most-viewed videos, top 10 most-liked videos, frequently appearing channels, and video engagement scores.
 
-**The Obstacle**
-- YouTube API responses contain **deeply nested JSON structures**.
-- Raw data includes missing values, duplicates, and inconsistent timestamps.
+The project also calculates a like-to-view engagement rate to provide an additional measure of audience interaction with trending videos.
 
-**The Resolution**
-- Built Python logic to **flatten nested JSON** into tabular data.
-- Added data cleaning and standardization steps.
-- Used **SQLAlchemy** to load processed data into a structured SQL environment.
+## Future Improvements
+
+- Add Apache Airflow for ETL scheduling and pipeline monitoring.
+- Store historical trending data for analyzing trends over time.
+- Add automated data quality checks.
+- Build a dashboard for visualizing YouTube trends and engagement.
+- Add an LLM-based assistant for asking natural-language questions about the collected data.
+
 
 ## ⚙️ Quick Start
 
